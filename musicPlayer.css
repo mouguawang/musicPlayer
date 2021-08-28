@@ -1,0 +1,238 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.eot");
+  src: url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.eot?#iefix")
+      format("embedded-opentype"),
+    url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.woff2")
+      format("woff2"),
+    url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.woff")
+      format("woff"),
+    url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.ttf")
+      format("truetype"),
+    url("http://at.alicdn.com/t/font_1622128_z6hlqa9uqe.svg#iconfont")
+      format("svg");
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 50px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+#musicPlayer{ 
+  width: 100%;
+  height: 100%;
+  position: relative;     /*生成相对定位的元素，相对于其正常位置进行定位。*/
+  overflow: hidden;     /*overflow 属性可以确定是否显示滚动条等行为   hidden内容会被修剪，并且其余内容是不可见的。*/
+}
+.backPicture{
+  background-image:url("https://p1.music.126.net/Tv5cS8x6BvOeBnThWIRh6w==/109951164860683750.jpg?param=90y90");
+  width: 100%;
+  height: 100%;
+  position: absolute;     /*生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位。 */
+  background-repeat: no-repeat;     /*背景图像将仅显示一次。  默认值会重复*/
+  background-position: center;
+  background-size: cover;     /*把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。
+  背景图像的某些部分也许无法显示在背景定位区域中。*/
+  filter: blur(15px);     /*对图像应用模糊效果。较大的值将产生更多的模糊。*/
+  transform: scale(1.1);      /*定义缩放转换。*/
+}
+.blur {
+  filter: blur(100px);
+}
+.musicWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.topBar {
+  margin: 0 4%;     /*规定基于父元素的宽度的百分比的外边距。*/
+  height: 10%;      /*基于包含它的块级对象的百分比高度。*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32px;
+  color: #fefffe;
+}
+.topBar .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;     /*作为列，垂直地显示弹性项目。*/
+}
+
+.topBar .info .author {
+  color: #e5e4e3;
+  font-size: 28px;
+}
+
+.topBar .share i {
+  font-size: 60px;
+}
+.cdMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4%;
+}
+.CD{
+  background-image:url("https://p1.music.126.net/Tv5cS8x6BvOeBnThWIRh6w==/109951164860683750.jpg?param=90y90");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+  height: 320px; 
+  width: 320px;
+  border-radius: 50%;
+}
+.progress {
+  color: #8e857b;
+  font-size: 20px;
+  margin: 0 4%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.progress .progressLine {
+  width: 75%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #8e857b;
+}
+.progress .progressLine .already-line {
+  width: 50%;
+  position: absolute;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #a9a39c;
+}
+.progress .progressLine .play-point {
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #fefffe;
+}
+
+.progress .progressLine .whole-line {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #8c8379;
+}
+
+.toolBar {
+  color: #fefffe;
+  margin: 0 4%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolBar i {
+  cursor: pointer;      /*小手光标*/
+}
+
+.commentList{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.commentList_back{
+  display: flex;
+  position: absolute;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.commentList_back i{
+  font-size: 50px;
+  color: white;
+  margin-left: 42px;
+  margin-top:10px;
+}
+
+.commentList_count{
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  height: 80px;
+  line-height: 80px;
+}
+
+.commentList_item{
+  padding: 0 20px 20px;
+  color: white;
+  margin-bottom: 20px;
+  border-bottom: 1px solid white;
+}
+
+.commentList_item:first-child{
+  padding-top: 20px;
+}
+
+.commentList_item_meta{
+  margin-bottom: 10px;
+}
+
+.commentList_item_meta_name {
+  font-size: 24px;
+}
+
+.commentList_item_meta_date {
+  font-size: 18px;
+  color: #b19c9c;
+}
+
+.commentList_item_meta_comment{
+  font-size: 20px;
+  color: #b19c9c;
+}
+
+.commentPub{
+  width: 92%;
+  position: absolute;
+  display: flex;
+  background-color: #1c1b1e;
+  padding: 0 4%;
+  height: 80px;
+  bottom: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commentPub input {
+  width: 70%;
+  height: 100%;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  background-color: #1c1b1e;
+  color: #757575;
+}
+
+.commentPub .buttonPub{
+  cursor: pointer;
+  display: flex;
+  color: #464648;
+  align-items: center;
+  height: 100%;
+  font-size: 24px;
+  color: #a9a39c;
+}

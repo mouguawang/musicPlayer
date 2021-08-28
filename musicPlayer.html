@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>鱼-李铭辰</title>
+    <link rel="stylesheet" type="text/css" href="./musicPlayer.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>  
+  <body>
+    <div id="app">
+      <div class="backPicture"></div>     <!--背景图片-->
+      <div class="backPicture blur"></div>    <!--模糊滤镜-->
+      <div class="musicWrapper">         <!--音乐播放器主体结构-->
+        <div class="topBar">            <!--顶部栏-->
+          <div class="back"><i class="iconfont">&#xe61e;</i></div>    <!--返回按钮-->
+          <div class="info">
+            <div class="title">{{title}}</div>      <!--歌曲标题-->
+            <div class="author">{{author}}</div>      <!--歌手-->
+          </div>
+          <div class="share"><i class="iconfont share">&#xe639;</i></div>     <!--分享按钮-->
+        </div>
+        <div class="cdMain">      <!--CD-->
+          <div class="CD" :style="{
+            transform:'rotate('+rotateDeg+'deg)'
+          }"></div>
+        </div>
+        <audio id="player" :src="src" @canplay="handleCanPlay" @timeupdate="handleTimeUpdate"></audio>      <!--音频-->
+        <div class="progress">      <!--进度条-->
+          <div class="beginTime">{{transferSecToTime(audioInfo.currentTime)}}</div>
+          <div class="progressLine">
+            <div class="whole-line"></div>
+            <div class="already-line" :style="'width:'+progress+'%'"></div>
+            <div class="play-point" :style="'left:'+progress+'%'"></div>
+          </div>
+          <div class="allTime">{{transferSecToTime(audioInfo.duration)}}</div>
+        </div>
+        <div class="toolBar">     <!--底部按钮-->
+          <div class="heart"><i class="iconfont share">&#xe68d;</i></div>
+          <div class="last"><i class="iconfont share">&#xe6e1;</i></div>
+          <div class="play" v-if="!isPlaying" @click="playMusic"><i class="iconfont share">&#xe6ce;</i></div>
+          <div class="pause" v-if="isPlaying" @click="pauseMusic"><i class="iconfont">&#xe643;</i></div>
+          <div class="next"><i class="iconfont share">&#xe718;</i></div>
+          <div class="list" @click="isVisible=true"><i class="iconfont share">&#xe6d3;</i></div>
+        </div>
+        <div class="commentList" v-if="isVisible">     <!--评论列表-->
+          <div class="commentList_back" @click="isVisible=false">
+            <i class="iconfont">&#xe61e;</i>
+          </div>
+          <div class="commentList_count">全部评论({{comments.length}})</div>
+          <div class="commentList_item" v-for="comment in comments">
+            <div class="commentList_item_meta">
+              <div class="commentList_item_meta_name">{{comment.name}}</div>
+              <div class="commentList_item_meta_date">{{comment.createdAt}}</div>
+              <div class="commentList_item_meta_comment">{{comment.comment}}</div>
+            </div>
+            <div class="commentPub">
+              <el-input v-model="inputtedComment" @change="addComment" placeholder="发表评论"> </el-input>
+              <el-button type="primary"  @click="addComment">发送</el-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  </body>
+</html>
